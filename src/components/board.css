@@ -1,0 +1,254 @@
+:root {
+  --tile-bg: #ffffff;
+  --tile-border: #d0d0d0;
+
+  --absent: #e6e6e6;
+  --present-border: #111111;
+  --correct: #111111;
+
+  --tile-size: 52px;
+  --gap: 10px;
+  --radius: 999px;
+}
+
+[data-theme="dark"] {
+  --tile-bg: #1e1e1e;
+  --tile-border: #4a4a4a;
+
+  --absent: #2a2a2a;
+  --present-border: #ffffff;
+  --correct: #ffffff;
+}
+
+/* Kontener */
+
+.board {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+}
+
+.board-inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--gap);
+
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Wiersze */
+
+.row-wrap {
+  display: grid;
+  grid-template-columns: auto;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  max-width: 100%;
+}
+
+.row {
+  display: grid;
+  grid-column: 1;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+/* Kafelki */
+
+.tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid var(--tile-border);
+  border-radius: var(--radius);
+
+  background: var(--tile-bg);
+  color: var(--text);
+
+  font-size: calc(var(--tile-size) * 0.38);
+  font-weight: 700;
+  user-select: none;
+}
+
+.tile--empty {
+  background: var(--tile-bg);
+  border-color: #bdbdbd;
+  color: transparent;
+}
+
+.tile--filled {
+  border-color: #cfcfcf;
+}
+
+.tile--absent {
+  background: var(--absent);
+  border-color: var(--absent);
+  color: var(--text);
+}
+
+.tile--present {
+  background: var(--tile-bg);
+  border-color: var(--present-border);
+  color: var(--text);
+}
+
+.tile--correct {
+  background: var(--correct);
+  border-color: var(--correct);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .tile--filled {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .tile--correct {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+
+[data-theme="dark"] .tile--empty {
+  border-color: #555555;
+}
+
+/* Mastermind */
+
+.row-spacer,
+.row-feedback-slot {
+  display: none;
+}
+
+.row-wrap--with-feedback {
+  grid-template-columns: var(--feedback-slot) auto var(--feedback-slot);
+  gap: var(--gap);
+}
+
+.row-wrap--with-feedback .row-spacer {
+  display: block;
+  grid-column: 1;
+  width: var(--feedback-slot);
+}
+
+.row-wrap--with-feedback .row {
+  grid-column: 2;
+}
+
+.row-wrap--with-feedback .row-feedback-slot {
+  display: flex;
+  grid-column: 3;
+
+  width: var(--feedback-slot);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mm-feedback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  padding: 4px 7px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.94);
+  color: #111111;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+
+  font-size: max(8px, calc(var(--tile-size) * 0.18));
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mm-feedback span {
+  min-width: 16px;
+  text-align: center;
+}
+
+[data-theme="dark"] .mm-feedback {
+  background: rgba(255, 255, 255, 0.95);
+  color: #111111;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Gracz i bot */
+
+.row-actor,
+.row-actor-spacer {
+  display: none;
+}
+
+.row-wrap--with-actor {
+  grid-template-columns: var(--actor-slot) auto var(--actor-slot);
+  gap: var(--gap);
+}
+
+.row-wrap--with-actor .row-actor {
+  display: flex;
+  grid-column: 1;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--actor-slot);
+  height: max(18px, calc(var(--tile-size) * 0.45));
+
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text);
+
+  font-size: max(8px, calc(var(--tile-size) * 0.2));
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+.row-wrap--with-actor .row {
+  grid-column: 2;
+}
+
+.row-wrap--with-actor .row-actor-spacer {
+  display: block;
+  grid-column: 3;
+  width: var(--actor-slot);
+}
+
+[data-theme="dark"] .row-wrap--with-actor .row-actor {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .mm-feedback {
+    flex-direction: column;
+    gap: 2px;
+
+    padding: 3px 5px;
+    border-radius: 10px;
+  }
+
+  .row-wrap--with-feedback,
+  .row-wrap--with-actor {
+    gap: max(3px, calc(var(--gap) * 0.7));
+  }
+}

@@ -1,0 +1,47 @@
+html, body, #root {
+  height: 100%;
+}
+
+html {
+  /* domyślnie jasny */
+  --bg: linear-gradient(
+  180deg,
+  #eaeaea 0%,
+  #f2f2f2 40%,
+  #ada996 100%
+);
+}
+
+html[data-theme="dark"] {
+  --bg: linear-gradient(
+    to bottom,
+    oklch(0.18 0 0),
+    oklch(0.22 0 0),
+    oklch(0.28 0 0),
+    oklch(0.33 0 0)
+  );
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  background-attachment: fixed;
+}
+
+body {
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(255,255,255,0.03),
+      transparent 70%
+    );
+}

@@ -1,0 +1,230 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #d9d9d9;
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --text: #eeeeee;
+  --muted: #2a2a2a;
+}
+
+/* Baza */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
+}
+
+/* Layout */
+
+.app-shell {
+  width: 100%;
+  height: 100dvh;
+
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+
+  padding: 12px 16px 14px;
+  overflow: hidden;
+}
+
+/* Nagłówek */
+
+.app-header {
+  width: 100%;
+  min-height: 64px;
+
+  display: grid;
+  justify-items: center;
+  align-content: start;
+
+  z-index: 2;
+}
+
+.top-inner {
+  width: 100%;
+  max-width: 760px;
+
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-open-btn {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: #111111;
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.menu-open-btn:hover {
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .menu-open-btn {
+  background: #ffffff;
+  color: #000000;
+}
+
+.top-placeholder {
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+
+  font-size: clamp(32px, 4.2vmin, 58px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.msg {
+  margin: 6px 0 0;
+  min-height: 22px;
+
+  font-size: 15px;
+  line-height: 1.25;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* Plansza */
+
+.app-main {
+  width: 100%;
+  min-height: 0;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+}
+
+/* Klawiatura */
+
+.app-footer {
+  width: 100%;
+
+  display: grid;
+  justify-items: center;
+
+  z-index: 2;
+}
+
+.app-footer .keyboard {
+  margin-top: 12px;
+}
+
+/* Compact */
+
+.app-shell--compact .app-footer .keyboard {
+  --key-size: clamp(46px, 4.6vmin, 58px);
+  --keyboard-gap: clamp(8px, 0.9vmin, 12px);
+  --keyboard-padding: clamp(10px, 1.1vmin, 14px);
+
+  margin-top: 8px;
+  max-width: min(720px, calc(100vw - 32px));
+  border-radius: 20px;
+}
+
+.app-shell--compact .app-footer .key {
+  font-size: clamp(15px, 1.4vmin, 18px);
+}
+
+.app-shell--compact .app-footer .special {
+  min-width: clamp(100px, 9vmin, 132px);
+  padding: 0 clamp(20px, 2.2vmin, 30px);
+  font-size: clamp(12px, 1.15vmin, 14px);
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .app-shell {
+    padding: 10px 8px;
+  }
+
+  .app-header {
+    min-height: 58px;
+  }
+
+  .top-inner {
+    grid-template-columns: 40px 1fr 40px;
+    gap: 8px;
+  }
+
+  .menu-open-btn,
+  .top-placeholder {
+    width: 36px;
+    height: 36px;
+  }
+
+  .title {
+    font-size: clamp(28px, 9vw, 36px);
+  }
+
+  .msg {
+    min-height: 18px;
+    font-size: 13px;
+  }
+
+  .app-footer .keyboard {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 370px) {
+  .app-shell {
+    padding: 8px 6px;
+  }
+
+  .app-header {
+    min-height: 54px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .menu-open-btn,
+  .top-placeholder {
+    width: 34px;
+    height: 34px;
+  }
+}

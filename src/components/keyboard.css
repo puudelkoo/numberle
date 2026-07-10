@@ -1,0 +1,328 @@
+:root {
+  --key-size: clamp(54px, 6.2vmin, 68px);
+  --keyboard-gap: clamp(10px, 1.2vmin, 14px);
+  --keyboard-padding: clamp(12px, 1.6vmin, 18px);
+}
+
+/* Baza */
+
+.keyboard {
+  width: fit-content;
+  max-width: calc(100vw - 32px);
+
+  margin-top: clamp(28px, 6vmin, 72px);
+
+  display: grid;
+  gap: var(--keyboard-gap);
+
+  padding: var(--keyboard-padding);
+  border-radius: clamp(20px, 2vmin, 28px);
+
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--keyboard-gap);
+}
+
+/* Klawisze */
+
+.key {
+  width: var(--key-size);
+  min-width: var(--key-size);
+  height: var(--key-size);
+
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid #d0d0d0;
+
+  background: #f7f7f7;
+  color: #111111;
+
+  font-size: clamp(18px, 2vmin, 24px);
+  font-weight: 700;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.key:hover {
+  filter: brightness(0.97);
+}
+
+.key:active {
+  transform: translateY(1px);
+}
+
+/* Stany klawiszy */
+
+.key--empty {
+  background: #f7f7f7;
+  color: #111111;
+  border: 1px solid #d0d0d0;
+}
+
+.key--correct {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+}
+
+.key--absent {
+  background: #e6e6e6;
+  color: #111111;
+  border: 1px solid #e6e6e6;
+}
+
+.key--present {
+  background: #e6e6e6;
+  color: #111111;
+  border: 2px solid #111111;
+}
+
+/* Akcje */
+
+.special {
+  width: auto;
+  min-width: clamp(110px, 12vmin, 150px);
+  height: var(--key-size);
+
+  padding: 0 clamp(24px, 3vmin, 38px);
+  border-radius: 999px;
+
+  font-size: clamp(13px, 1.5vmin, 17px);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.key.special.submit {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+}
+
+.key.special.delete {
+  background: #f0f0f0;
+  color: #111111;
+  border: 1px solid #d0d0d0;
+}
+
+/* Dark mode */
+
+html[data-theme="dark"] .keyboard {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+html[data-theme="dark"] .key {
+  background: #2a2a2a;
+  color: #eeeeee;
+  border: 1px solid #3a3a3a;
+}
+
+html[data-theme="dark"] .key--empty {
+  background: #2a2a2a;
+  color: #eeeeee;
+  border: 1px solid #3a3a3a;
+}
+
+html[data-theme="dark"] .key--correct {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+html[data-theme="dark"] .key--absent {
+  background: #333333;
+  color: #eeeeee;
+  border: 1px solid #333333;
+}
+
+html[data-theme="dark"] .key--present {
+  background: #2a2a2a;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+html[data-theme="dark"] .key.special.submit {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+html[data-theme="dark"] .key.special.delete {
+  background: #2f2f2f;
+  color: #eeeeee;
+  border: 1px solid #3a3a3a;
+}
+
+/* Tablet */
+
+@media (min-width: 700px) and (max-width: 1199px) {
+  :root {
+    --key-size: clamp(56px, 6vmin, 66px);
+    --keyboard-gap: clamp(10px, 1.2vmin, 13px);
+    --keyboard-padding: clamp(12px, 1.5vmin, 17px);
+  }
+
+  .keyboard {
+    margin-top: clamp(36px, 7vmin, 76px);
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1200px) {
+  :root {
+    --key-size: clamp(62px, 4.4vmin, 76px);
+    --keyboard-gap: clamp(12px, 0.9vmin, 16px);
+    --keyboard-padding: clamp(16px, 1.2vmin, 22px);
+  }
+
+  .keyboard {
+    margin-top: clamp(48px, 7vmin, 92px);
+  }
+
+  .special {
+    min-width: clamp(130px, 9vmin, 170px);
+  }
+}
+
+/* Mobile */
+
+.keyboard--mobile {
+  width: fit-content;
+  max-width: calc(100vw - 24px);
+
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: grid;
+  gap: 8px;
+
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.keyboard--mobile .keyboard-row,
+.keyboard--mobile .keyboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.keyboard--mobile .key:not(.special) {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+
+  padding: 0;
+  border-radius: 999px;
+
+  font-size: 16px;
+}
+
+.keyboard--mobile .special {
+  width: auto;
+  min-width: 78px;
+  height: 44px;
+  flex: 0 0 auto;
+
+  padding: 0 14px;
+  border-radius: 999px;
+
+  font-size: 12px;
+}
+
+/* Małe telefony */
+
+@media (max-width: 400px) {
+  .keyboard--mobile {
+    max-width: calc(100vw - 16px);
+
+    margin-top: 14px;
+    gap: 8px;
+
+    padding: 9px;
+    border-radius: 18px;
+  }
+
+  .keyboard--mobile .keyboard-row,
+  .keyboard--mobile .keyboard-actions {
+    gap: 8px;
+  }
+
+  .keyboard--mobile .key:not(.special) {
+    width: 39px;
+    min-width: 39px;
+    height: 39px;
+    flex: 0 0 39px;
+
+    font-size: 15px;
+  }
+
+  .keyboard--mobile .special {
+    min-width: 76px;
+    height: 39px;
+
+    padding: 0 12px;
+    font-size: 11px;
+  }
+}
+
+/* Bardzo małe telefony */
+
+@media (max-width: 370px) {
+  .keyboard--mobile {
+    max-width: calc(100vw - 12px);
+
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .keyboard--mobile .keyboard-row,
+  .keyboard--mobile .keyboard-actions {
+    gap: 6px;
+  }
+
+  .keyboard--mobile .key:not(.special) {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+
+    font-size: 14px;
+  }
+
+  .keyboard--mobile .special {
+    min-width: 70px;
+    height: 36px;
+
+    padding: 0 10px;
+    font-size: 10px;
+  }
+}
+
+/* Wąskie ekrany */
+
+@media (max-width: 340px) {
+  .keyboard--mobile .key:not(.special) {
+    width: 33px;
+    min-width: 33px;
+    height: 33px;
+    flex-basis: 33px;
+
+    font-size: 13px;
+  }
+
+  .keyboard--mobile .special {
+    min-width: 64px;
+    height: 34px;
+
+    font-size: 9px;
+  }
+}
