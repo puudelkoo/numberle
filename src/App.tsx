@@ -41,7 +41,7 @@ import {
 import { hasNoRepeats } from "./game/validators";
 import { getBotGuess, type BotLevel, type BotMoveInfo } from "./game/bot";
 
-import "./app.css";
+import "./App.css";
 
 // Pomocnicze funkcje
 
