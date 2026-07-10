@@ -1,73 +1,144 @@
-# React + TypeScript + Vite
+# Numberle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Numberle** is a responsive logic game inspired by Wordle, but instead of guessing words, the player guesses a code made of digits. The project was built with React + TypeScript and includes multiple game modes, statistics, a Daily Challenge and a bot opponent.
 
-Currently, two official plugins are available:
+## Live demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Play here:  
+**[https://pudelkoo.github.io/numberle/](https://puudelkoo.github.io/numberle/)**
 
-## React Compiler
+## Preview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<p align="center">
+  <img src="assets/screenshots/numberle-desktop.png" alt="Numberle desktop gameplay" width="800" />
+</p>
 
-## Expanding the ESLint configuration
+<p align="center">
+  <b>Desktop gameplay</b><br />
+  Main game view with the board, on-screen keyboard and dark theme.
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<p align="center">
+  <img src="assets/screenshots/numberle-mobile.png" alt="Numberle mobile gameplay" width="260" />
+</p>
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+<p align="center">
+  <b>Mobile layout</b><br />
+  Responsive layout adapted for smaller screens.
+</p>
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+<p align="center">
+  <img src="assets/screenshots/numberle-result.png" alt="Numberle result modal" width="500" />
+</p>
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+<p align="center">
+  <b>Result summary</b><br />
+  Game summary with the result, statistics and guess distribution.
+</p>
+
+## Tech stack
+
+<p>
+  <img src="https://skillicons.dev/icons?i=react,ts,vite,css,github" alt="Tech stack icons" />
+</p>
+
+- React
+- TypeScript
+- Vite
+- CSS
+- LocalStorage
+- GitHub Pages
+- GitHub Actions
+
+## Features
+
+- multiple game modes,
+- responsive desktop and mobile interface,
+- locally saved statistics,
+- Daily Challenge available once per day,
+- Mastermind mode with classic `B` / `C` feedback,
+- bot opponent mode,
+- light and dark theme,
+- physical and on-screen keyboard support.
+
+## Game modes
+
+### Classic
+
+The standard mode where the player guesses a digit code. Digits can repeat.
+
+### No Repeats
+
+A mode where the secret code does not contain repeated digits.
+
+### Hard Mode
+
+A more challenging version of the game with additional restrictions for the next guesses.
+
+### Daily Challenge
+
+A daily puzzle with one unique code for each day. The result can be saved only once per day.
+
+### Mastermind
+
+A mode inspired by the classic Mastermind game. Instead of tile colors, the player receives feedback:
+
+- `B` — correct digit in the correct position,
+- `C` — correct digit in the wrong position.
+
+Available levels:
+
+- Easy,
+- Medium,
+- Hard.
+
+### Bot Mode
+
+In Classic mode, the player can play against a bot. The bot and the player take turns guessing the same secret code.
+
+Bot levels:
+
+- Easy — random guesses,
+- Medium — guesses narrowed down based on previous feedback,
+- Hard — more optimized move selection.
+
+## Running locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/pudelkoo/numberle.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Go to the project folder:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd numberle
 ```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the project locally:
+
+```bash
+npm run dev
+```
+
+Build the production version:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+The project is hosted on **GitHub Pages**.  
+Deployment is handled automatically with **GitHub Actions** after each push to the `main` branch.
+
+## Project status
+
+The project is a working version of the game with completed modes, statistics and a responsive UI. Future improvements may include animations, an improved result screen, PWA support or tests.
